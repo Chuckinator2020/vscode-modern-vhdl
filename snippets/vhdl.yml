@@ -9,66 +9,66 @@ ieee_imports:
   description: IEEE Standard Packages
   scope: source.vhdl
   body:
-    - library IEEE;
-    - use IEEE.std_logic_1164.all;
-    - use IEEE.numeric_std.all;
+    - LIBRARY IEEE;
+    - USE IEEE.std_logic_1164.all;
+    - USE IEEE.numeric_std.all;
 
 entity_declaration:
   prefix: ent
   description: Entity Declaration
   scope: source.vhdl
   body:
-    - "entity ${1:$TM_FILENAME_BASE} is"
-    - "\tport ("
+    - "ENTITY ${1:$TM_FILENAME_BASE} is"
+    - "\tPORT ("
     - "\t\t$0"
     - "\t);"
-    - "end entity ${1:$TM_FILENAME_BASE};"
+    - "END ${1:$TM_FILENAME_BASE};"
 
 architecture_declaration:
   prefix: arch
   description: Architecture Declaration
   scope: source.vhdl
   body:
-    - "architecture ${1:rtl} of ${2:$TM_FILENAME_BASE} is"
+    - "ARCHITECTURE ${1:rtl} OF ${2:$TM_FILENAME_BASE} IS"
     - "\t"
-    - "begin"
+    - "BEGIN"
     - "\t"
     - "\t$0"
     - "\t"
-    - "end architecture ${1:rtl};"
+    - "END ${1:rtl};"
 
 configuration_declaration:
   prefix: conf
   description: Configuration Declaration
   scope: source.vhdl
   body:
-    - "configuration ${1:rtl} of ${2:$TM_FILENAME_BASE} is"
+    - "CONFIGURATION ${1:rtl} OF ${2:$TM_FILENAME_BASE} IS"
     - "\t"
     - "\t$0"
     - "\t"
-    - "end configuration ${1:rtl};"
+    - "END ${1:rtl};"
 
 package_declaration:
   prefix: pack
   description: Package Declaration
   scope: source.vhdl
   body:
-    - "package ${1:$TM_FILENAME_BASE} is"
+    - "PACKAGE ${1:$TM_FILENAME_BASE} IS"
     - "\t"
     - "\t$0"
     - "\t"
-    - "end package ${1:$TM_FILENAME_BASE};"
+    - "END ${1:$TM_FILENAME_BASE};"
 
 package_body_declaration:
   prefix: pack
   description: Package Body Declaration
   scope: source.vhdl
   body:
-    - "package body ${1:$TM_FILENAME_BASE} is"
+    - "PACKAGE BODY ${1:$TM_FILENAME_BASE} IS"
     - "\t"
     - "\t$0"
     - "\t"
-    - "end package body ${1:$TM_FILENAME_BASE};"
+    - "END ${1:$TM_FILENAME_BASE};"
 
 # --------------------------------------------------
 # Language Constructs
@@ -79,28 +79,28 @@ case:
   description: Case Statement
   scope: source.vhdl
   body:
-    - "case ${1:expression} is"
-    - "\twhen ${2:choice} =>"
+    - "CASE ${1:expression} IS"
+    - "\tWHEN ${2:choice} =>"
     - "\t\t$0"
     - ""
-    - "\twhen others =>"
+    - "\tWHEN others =>"
     - "\t\t"
     - ""
-    - "end case;"
+    - "END;"
 
 case_generate:
   prefix: case
   description: Case Generate Statement
   scope: source.vhdl
   body:
-    - "${1:generate_label}: case ${2:expression} generate"
-    - "\twhen ${3:choice} =>"
+    - "${1:generate_label}: CASE ${2:expression} GENERATE"
+    - "\tWHEN ${3:choice} =>"
     - "\t\t$0"
     - ""
-    - "\twhen others =>"
+    - "\tWHEN others =>"
     - "\t\tnull;"
     - ""
-    - "end generate $1;"
+    - "END $1;"
 
 if:
   prefix: if
@@ -184,50 +184,50 @@ testbench_process:
   description: Testbench Process (No Sensitivity List) 
   scope: source.vhdl
   body:
-    - "${1:proc_name}: process"
-    - "begin"
+    - "${1:proc_name}: PROCESS"
+    - "BEGIN"
     - "\t$0"
-    - "end process $1;"
+    - "END $1;"
 
 combinational_process :
   prefix: cproc, processc
   description: Combinational Process 
   scope: source.vhdl
   body:
-    - "${1:proc_name}: process(${2:sensitivity_list})"
-    - "begin"
+    - "${1:proc_name}: PROCESS(${2:sensitivity_list})"
+    - "BEGIN"
     - "\t$0"
-    - "end process $1;"
+    - "END $1;"
 
 asynchronous_reset_clocked_process :
   prefix: aproc, processa
   description: Clocked Process (Asynchronous Reset)  
   scope: source.vhdl
   body:
-    - "${1:proc_name}: process(${3:clk}, ${4:rst})"
-    - "begin"
-    - "\tif ${4:rst} = ${5:rst_val} then"
+    - "${1:proc_name}: PROCESS(${3:clk}, ${4:rst})"
+    - "BEGIN"
+    - "\tIF ${4:rst} = ${5:rst_val} THEN"
     - "\t\t$0"
-    - "\telsif ${2|rising_edge,falling_edge|}(${3:clk}) then"
+    - "\tELSIF ${2|rising_edge,falling_edge|}(${3:clk}) THEN"
     - "\t\t"
-    - "\tend if;"
-    - "end process $1;"
+    - "\tEND IF;"
+    - "END $1;"
 
 synchronous_reset_clocked_process :
   prefix: sproc, processs
   description: Clocked Process (Synchronous Reset)  
   scope: source.vhdl
   body:
-    - "${1:proc_name}: process(${3:clk})"
-    - "begin"
-    - "\tif ${2|rising_edge,falling_edge|}(${3:clk}) then"
-    - "\t\tif ${4:rst} = ${5:rst_val} then"
+    - "${1:proc_name}: PROCESS(${3:clk})"
+    - "BEGIN"
+    - "\tIF ${2|rising_edge,falling_edge|}(${3:clk}) THEN"
+    - "\t\tIF ${4:rst} = ${5:rst_val} THEN"
     - "\t\t\t$0"
-    - "\t\telse"
+    - "\t\tELSE"
     - "\t\t\t"
-    - "\t\tend if;"
-    - "\tend if;"
-    - "end process $1;"
+    - "\t\tEND IF;"
+    - "\tEND IF;"
+    - "END $1;"
 
 # --------------------------------------------------
 # Others
