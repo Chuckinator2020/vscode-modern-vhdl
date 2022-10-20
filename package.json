@@ -1,9 +1,9 @@
 {
-    "name": "vscode-modern-vhdl-support",
-    "displayName": "Modern VHDL",
+    "name": "vscode-vhdl-stargazer",
+    "displayName": "VHDL Stargazer",
     "description": "VHDL Language Support",
-    "publisher": "rjyoung",
-    "version": "1.0.6",
+    "publisher": "Chuckinator2020",
+    "version": "1.1.0",
     "license": "MIT",
     "icon": "images/logo.png",
     "engines": {
@@ -12,7 +12,7 @@
     "main": "./out/extension.js",
     "repository": {
         "type": "git",
-        "url": "https://github.com/richjyoung/vscode-modern-vhdl.git"
+        "url": "https://github.com/Chuckinator2020/vscode-modern-vhdl.git"
     },
     "categories": [
         "Programming Languages",

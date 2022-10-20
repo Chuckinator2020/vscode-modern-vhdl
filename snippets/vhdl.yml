@@ -4,6 +4,26 @@
 # Design File Primary/Secondary Units
 # --------------------------------------------------
 
+default:
+  prefix: default
+  description: Custom Lab Starter
+  scope: source.vhdl
+  body:
+    - ""
+    - "LIBRARY ieee;"
+    - "USE ieee.std_logic_1164.all;"
+    - ""
+    - "ENTITY lab${1} IS"
+    - "\tPORT(\tSW\t\t: IN\tSTD_LOGIC_VECTOR(9 DOWNTO 0);"
+    - "\t\t\tLEDR\t: OUT\tSTD_LOGIC_VECTOR(9 DOWNTO 0));"
+    - "END lab${1};"
+    - ""
+    - "ARCHITECTURE Main OF lab${1} IS"
+    - "BEGIN"
+    - "\tLEDR <= SW;"
+    - "END Main;"
+    - ""
+
 ieee_imports:
   prefix: ieee
   description: IEEE Standard Packages
